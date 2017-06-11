@@ -1,0 +1,65 @@
+body{
+	background-image: url(background.jpg);
+	background-position: top;
+}
+
+hr{
+	height:10px;
+	color:blue;
+	background:red;
+}
+
+ul.menu_bar{
+	text-align:center;
+}
+
+li.menu_bar{
+	display:inline;
+	margin-left: 1em;
+}
+
+ol{
+	list-style-type:upper-roman;
+}
+
+li.shops{
+	list-style-type:lower-roman;
+}
+
+table {
+	border-collapse:collapse;
+	background-color:yellow;
+	margin:4ex 0 0 8ex;
+}
+
+td, th {
+	border-width: thin;
+	border-style: solid;
+	padding: 3px;
+	border-color:red;
+}
+
+th{
+	text-align:left;
+}
+
+q{
+	color:red;
+	font-weight:bold;
+}
+
+p{
+	text-indent:2ex;
+}
+
+p.first{
+	font-family:Arial;
+	font-size:150%;
+}
+p.second{
+	margin-right:15em;
+	width:60%;
+ }
+h2,h3{
+	margin-left:20%;
+}

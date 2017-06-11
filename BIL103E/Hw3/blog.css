@@ -1,0 +1,45 @@
+body {
+    text-align:center;
+    background-image:url(http://i133.photobucket.com/albums/q80/MsKitty611/BackgroundCB_Litterbox1024x800-1.jpg);
+    background-size: 100%;
+    font-family: 'Harrington';
+}
+div.field{
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+    border-style: outset;
+    border-radius: 8px;
+    border-width: 12px;
+    border-color: #3090C7;
+}
+table{
+    margin-left:auto;
+    margin-right:auto;
+}
+hr{
+    margin-left:auto;
+    margin-right:auto;
+    width:65%;
+}
+h2{
+    margin-left:auto;
+    margin-right:auto;
+    width:65%;
+}
+ul.menu_bar{
+	text-align:center;
+}
+
+li.menu_bar{
+	display:inline;
+	margin-left: 1em;
+}
+li.times{
+    list-style-type:upper-roman;
+}
+div.times{
+    margin-left:auto;
+    margin-right:auto;
+    width:5%;
+}

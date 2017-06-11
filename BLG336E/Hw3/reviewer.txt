@@ -1,0 +1,10 @@
+9
+Prof1	3
+Prof2	1
+Prof3	2
+AstProf1	3
+AstProf2	4
+AstProf3	1
+AstProf4	3
+Ast1	1
+Ast2	2
