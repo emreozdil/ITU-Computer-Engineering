@@ -1,9 +1,10 @@
 # ITU(Istanbul Technical University) -- Computer-Engineering
 
-This repository includes the homeworks and solutions.
+This repository includes the homework and solutions.
 
-- All rights of the homeworks reserved by Istanbul Technical University Computer Engineering Department.
-- If you are a member of Istanbul Technical University, you must not use these codes for your homeworks due to plagiarism. You can benefit the solution techniques.
+- All rights of the homework reserved by Istanbul Technical University Computer Engineering Department.
+- Each one consists of pdf file which includes homework definition.
+- If you are a member of Istanbul Technical University, you must not use these codes for your homework due to plagiarism. You can benefit the solution techniques.
 - You are free to contribute the codes.
 
 
