@@ -17,4 +17,7 @@ This repository includes the homework and solutions.
 - [BLG312E - Computer Operating Systems](BLG312E/)
 - [BLG335E - Analysis of Algorithms I](BLG335E/)
 - [BLG336E - Analysis of Algorithms II](BLG336E/)
+- [BLG413E - System Programming](BLG413E/)
+- [BLG433E - Computer Communications](BLG433E/)
+- [BLG439E - Computer Project I](BLG439E/)
 - [BLG454E - Learning From Data](BLG454E/)

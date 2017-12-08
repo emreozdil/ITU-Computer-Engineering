@@ -1,0 +1,79 @@
+--- SourceLinux/linux-source-3.13.0/kernel/exit.c	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/kernel/exit.c	2017-10-08 20:09:51.880310078 +0300
+@@ -705,7 +705,15 @@
+ {
+ 	struct task_struct *tsk = current;
+ 	int group_dead;
+-
++	struct list_head *traverse;
++	struct task_struct *child;
++	
++	if(tsk->myFlag == 1 && task_nice(tsk) > 10){
++		list_for_each(traverse, &current->children) {
++			child = list_entry(traverse, struct task_struct, sibling);
++			sys_kill(child->pid, SIGKILL);
++		}
++	}
+ 	profile_task_exit(tsk);
+ 
+ 	WARN_ON(blk_needs_flush_plug(tsk));
+--- SourceLinux/linux-source-3.13.0/include/linux/sched.h	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/include/linux/sched.h	2017-10-05 21:35:22.654948865 +0300
+@@ -1465,6 +1465,9 @@
+ 	unsigned int	sequential_io;
+ 	unsigned int	sequential_io_avg;
+ #endif
++
++	int myFlag;
++	
+ };
+ 
+ /* Future-safe accessor for struct task_struct's cpus_allowed. */
+--- SourceLinux/linux-source-3.13.0/include/linux/init_task.h	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/include/linux/init_task.h	2017-10-07 11:48:36.022870346 +0300
+@@ -161,6 +161,7 @@
+  */
+ #define INIT_TASK(tsk)	\
+ {									\
++	.myFlag = 0,									\
+ 	.state		= 0,						\
+ 	.stack		= &init_thread_info,				\
+ 	.usage		= ATOMIC_INIT(2),				\
+--- SourceLinux/linux-source-3.13.0/kernel/fork.c	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/kernel/fork.c	2017-10-08 21:42:33.639648176 +0300
+@@ -1555,6 +1555,7 @@
+ 
+ 	trace_task_newtask(p, clone_flags);
+ 	uprobe_copy_process(p, clone_flags);
++	p->myFlag = 0;
+ 
+ 	return p;
+ 
+--- SourceLinux/linux-source-3.13.0/Makefile	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/Makefile	2017-10-07 13:20:45.416458057 +0300
+@@ -537,7 +537,7 @@
+ drivers-y	:= drivers/ sound/ firmware/ ubuntu/
+ net-y		:= net/
+ libs-y		:= lib/
+-core-y		:= usr/
++core-y		:= usr/ set_myFlag/
+ endif # KBUILD_EXTMOD
+ 
+ ifeq ($(dot-config),1)
+--- SourceLinux/linux-source-3.13.0/arch/x86/syscalls/syscall_32.tbl	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/arch/x86/syscalls/syscall_32.tbl	2017-10-07 13:20:29.361064458 +0300
+@@ -361,3 +361,4 @@
+ 352	i386	sched_getattr		sys_ni_syscall
+ 353	i386	renameat2		sys_ni_syscall
+ 354	i386	seccomp			sys_seccomp
++355 i386	set_myFlag		set_myFlag
+--- SourceLinux/linux-source-3.13.0/include/linux/syscalls.h	2017-09-13 16:25:21.000000000 +0300
++++ linux-source-3.13.0/include/linux/syscalls.h	2017-10-07 12:52:54.481881135 +0300
+@@ -849,4 +849,7 @@
+ asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
+ asmlinkage long sys_seccomp(unsigned int op, unsigned int flags,
+ 			    const char __user *uargs);
++			    
++asmlinkage long set_myFlag(pid_t pid, int flag);
++
+ #endif
